@@ -1,121 +1,222 @@
 'use client'
 
 import { useEffect, useRef } from 'react'
-import * as THREE from 'three'
 
-function NeonBackground() {
-  const mountRef = useRef<HTMLDivElement | null>(null)
+function AnimatedBackground() {
+  const canvasRef = useRef<HTMLCanvasElement | null>(null)
   const rafRef = useRef<number | null>(null)
+  const mouseRef = useRef({ x: 0, y: 0 })
+  const particlesRef = useRef<any[]>([])
 
   useEffect(() => {
-    if (!mountRef.current) return
-    const mount = mountRef.current
-
-    const scene = new THREE.Scene()
-    scene.fog = new THREE.Fog(0x02030a, 25, 90)
-
-    const camera = new THREE.PerspectiveCamera(60, mount.clientWidth / mount.clientHeight, 0.1, 200)
-    camera.position.set(0, 1.5, 8)
-
-    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true })
-    renderer.setClearColor(0x000000, 0)
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.8))
-    renderer.setSize(mount.clientWidth, mount.clientHeight)
-    mount.appendChild(renderer.domElement)
-
-    // Lights
-    const ambient = new THREE.AmbientLight(0x404040, 1.2)
-    scene.add(ambient)
-
-    const dir = new THREE.DirectionalLight(0x00e5ff, 2.2)
-    dir.position.set(5, 10, 7)
-    scene.add(dir)
-
-    const group = new THREE.Group()
-    scene.add(group)
-
-    // Neon wireframe torus knot
-    const torusGeo = new THREE.TorusKnotGeometry(1.5, 0.45, 220, 22)
-    const torusMat = new THREE.MeshBasicMaterial({ color: 0x00e5ff, wireframe: true })
-    const torus = new THREE.Mesh(torusGeo, torusMat)
-    group.add(torus)
-
-    // Neon sphere wireframe behind
-    const sphereGeo = new THREE.IcosahedronGeometry(3.2, 2)
-    const sphereMat = new THREE.MeshBasicMaterial({ color: 0xff00ff, wireframe: true, transparent: true, opacity: 0.35 })
-    const sphere = new THREE.Mesh(sphereGeo, sphereMat)
-    group.add(sphere)
-
-    // Starfield particles
-    const starGeo = new THREE.BufferGeometry()
-    const starCount = 1200
-    const positions = new Float32Array(starCount * 3)
-    for (let i = 0; i < starCount; i++) {
-      positions[i * 3 + 0] = (Math.random() - 0.5) * 90
-      positions[i * 3 + 1] = (Math.random() - 0.2) * 70
-      positions[i * 3 + 2] = -Math.random() * 120 - 10
+    const canvas = canvasRef.current
+    if (!canvas) return
+    
+    const ctx = canvas.getContext('2d')!
+    const resizeCanvas = () => {
+      canvas.width = window.innerWidth
+      canvas.height = window.innerHeight
     }
-    starGeo.setAttribute('position', new THREE.BufferAttribute(positions, 3))
-    const starMat = new THREE.PointsMaterial({ color: 0x7a00ff, size: 0.04, transparent: true, opacity: 0.7 })
-    const stars = new THREE.Points(starGeo, starMat)
-    scene.add(stars)
-
-    // Resize handling
-    const onResize = () => {
-      const { clientWidth, clientHeight } = mount
-      renderer.setSize(clientWidth, clientHeight)
-      camera.aspect = clientWidth / clientHeight
-      camera.updateProjectionMatrix()
+    resizeCanvas()
+    
+    // Particle system
+    const createParticles = () => {
+      const particles = []
+      for (let i = 0; i < 150; i++) {
+        particles.push({
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height,
+          size: Math.random() * 3 + 1,
+          speedX: (Math.random() - 0.5) * 0.5,
+          speedY: (Math.random() - 0.5) * 0.5,
+          opacity: Math.random() * 0.8 + 0.2,
+          color: Math.random() > 0.5 ? '#7a00ff' : '#00e5ff',
+          pulse: Math.random() * Math.PI * 2
+        })
+      }
+      return particles
     }
-    const resizeObserver = new ResizeObserver(onResize)
-    resizeObserver.observe(mount)
-
-    // Mouse parallax
-    const pointer = new THREE.Vector2(0, 0)
-    const onPointerMove = (e: PointerEvent) => {
-      const rect = mount.getBoundingClientRect()
-      pointer.x = ((e.clientX - rect.left) / rect.width - 0.5) * 2
-      pointer.y = ((e.clientY - rect.top) / rect.height - 0.5) * -2
+    
+    // Floating geometric shapes
+    const createShapes = () => {
+      const shapes = []
+      for (let i = 0; i < 20; i++) {
+        shapes.push({
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height,
+          size: Math.random() * 60 + 20,
+          rotation: Math.random() * Math.PI * 2,
+          rotationSpeed: (Math.random() - 0.5) * 0.02,
+          speedX: (Math.random() - 0.5) * 0.3,
+          speedY: (Math.random() - 0.5) * 0.3,
+          opacity: Math.random() * 0.3 + 0.1,
+          type: Math.floor(Math.random() * 3), // 0: triangle, 1: square, 2: hexagon
+          color: ['#ff00ff', '#00e5ff', '#7a00ff'][Math.floor(Math.random() * 3)]
+        })
+      }
+      return shapes
     }
-    mount.addEventListener('pointermove', onPointerMove)
-
-    // Animate
-    const clock = new THREE.Clock()
+    
+    particlesRef.current = createParticles()
+    const shapes = createShapes()
+    
+    // Mouse tracking
+    const handleMouseMove = (e: MouseEvent) => {
+      mouseRef.current = { x: e.clientX, y: e.clientY }
+    }
+    window.addEventListener('mousemove', handleMouseMove)
+    
+    // Draw functions
+    const drawParticle = (particle: any) => {
+      ctx.save()
+      ctx.globalAlpha = particle.opacity
+      ctx.fillStyle = particle.color
+      ctx.shadowColor = particle.color
+      ctx.shadowBlur = 10
+      ctx.beginPath()
+      ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2)
+      ctx.fill()
+      ctx.restore()
+    }
+    
+    const drawShape = (shape: any) => {
+      ctx.save()
+      ctx.translate(shape.x, shape.y)
+      ctx.rotate(shape.rotation)
+      ctx.globalAlpha = shape.opacity
+      ctx.strokeStyle = shape.color
+      ctx.lineWidth = 2
+      ctx.shadowColor = shape.color
+      ctx.shadowBlur = 15
+      
+      ctx.beginPath()
+      if (shape.type === 0) { // Triangle
+        ctx.moveTo(0, -shape.size / 2)
+        ctx.lineTo(-shape.size / 2, shape.size / 2)
+        ctx.lineTo(shape.size / 2, shape.size / 2)
+        ctx.closePath()
+      } else if (shape.type === 1) { // Square
+        ctx.rect(-shape.size / 2, -shape.size / 2, shape.size, shape.size)
+      } else { // Hexagon
+        for (let i = 0; i < 6; i++) {
+          const angle = (i * Math.PI) / 3
+          const x = Math.cos(angle) * shape.size / 2
+          const y = Math.sin(angle) * shape.size / 2
+          if (i === 0) ctx.moveTo(x, y)
+          else ctx.lineTo(x, y)
+        }
+        ctx.closePath()
+      }
+      ctx.stroke()
+      ctx.restore()
+    }
+    
+    // Animation loop
     const animate = () => {
-      const t = clock.getElapsedTime()
-      group.rotation.x = Math.sin(t * 0.4) * 0.2 + pointer.y * 0.15
-      group.rotation.y = t * 0.25 + pointer.x * 0.25
-      stars.rotation.y = t * 0.02
-      renderer.render(scene, camera)
+      ctx.clearRect(0, 0, canvas.width, canvas.height)
+      
+      // Dynamic gradient background
+      const time = Date.now() * 0.001
+      const gradient = ctx.createRadialGradient(
+        mouseRef.current.x, mouseRef.current.y, 0,
+        mouseRef.current.x, mouseRef.current.y, 800
+      )
+      gradient.addColorStop(0, `rgba(122, 0, 255, ${0.1 + Math.sin(time) * 0.05})`)
+      gradient.addColorStop(0.5, `rgba(0, 229, 255, ${0.05 + Math.cos(time * 1.5) * 0.03})`)
+      gradient.addColorStop(1, 'rgba(0, 0, 0, 0)')
+      
+      ctx.fillStyle = gradient
+      ctx.fillRect(0, 0, canvas.width, canvas.height)
+      
+      // Update and draw particles
+      particlesRef.current.forEach((particle, index) => {
+        // Mouse interaction
+        const dx = mouseRef.current.x - particle.x
+        const dy = mouseRef.current.y - particle.y
+        const distance = Math.sqrt(dx * dx + dy * dy)
+        
+        if (distance < 150) {
+          particle.x += dx * 0.001
+          particle.y += dy * 0.001
+        }
+        
+        particle.x += particle.speedX
+        particle.y += particle.speedY
+        particle.pulse += 0.02
+        particle.opacity = 0.3 + Math.sin(particle.pulse) * 0.3
+        
+        // Wrap around screen
+        if (particle.x < 0) particle.x = canvas.width
+        if (particle.x > canvas.width) particle.x = 0
+        if (particle.y < 0) particle.y = canvas.height
+        if (particle.y > canvas.height) particle.y = 0
+        
+        drawParticle(particle)
+      })
+      
+      // Update and draw shapes
+      shapes.forEach(shape => {
+        shape.x += shape.speedX
+        shape.y += shape.speedY
+        shape.rotation += shape.rotationSpeed
+        
+        // Wrap around screen
+        if (shape.x < -shape.size) shape.x = canvas.width + shape.size
+        if (shape.x > canvas.width + shape.size) shape.x = -shape.size
+        if (shape.y < -shape.size) shape.y = canvas.height + shape.size
+        if (shape.y > canvas.height + shape.size) shape.y = -shape.size
+        
+        drawShape(shape)
+      })
+      
+      // Connection lines between nearby particles
+      particlesRef.current.forEach((particle, i) => {
+        particlesRef.current.slice(i + 1).forEach(otherParticle => {
+          const dx = particle.x - otherParticle.x
+          const dy = particle.y - otherParticle.y
+          const distance = Math.sqrt(dx * dx + dy * dy)
+          
+          if (distance < 100) {
+            ctx.save()
+            ctx.globalAlpha = (100 - distance) / 100 * 0.2
+            ctx.strokeStyle = '#7a00ff'
+            ctx.lineWidth = 1
+            ctx.beginPath()
+            ctx.moveTo(particle.x, particle.y)
+            ctx.lineTo(otherParticle.x, otherParticle.y)
+            ctx.stroke()
+            ctx.restore()
+          }
+        })
+      })
+      
       rafRef.current = requestAnimationFrame(animate)
     }
+    
     animate()
-
+    
+    window.addEventListener('resize', resizeCanvas)
+    
     return () => {
-      if (rafRef.current !== null) cancelAnimationFrame(rafRef.current)
-      mount.removeEventListener('pointermove', onPointerMove)
-      resizeObserver.disconnect()
-      torusGeo.dispose()
-      sphereGeo.dispose()
-      starGeo.dispose()
-      renderer.dispose()
-      if (mount.contains(renderer.domElement)) {
-        mount.removeChild(renderer.domElement)
-      }
+      if (rafRef.current) cancelAnimationFrame(rafRef.current)
+      window.removeEventListener('mousemove', handleMouseMove)
+      window.removeEventListener('resize', resizeCanvas)
     }
   }, [])
 
-  return <div ref={mountRef} className="pointer-events-none fixed inset-0 -z-10" />
+  return (
+    <canvas 
+      ref={canvasRef} 
+      className="fixed inset-0 pointer-events-none z-0" 
+      style={{ background: 'transparent' }}
+    />
+  )
 }
 
 export default function Home() {
   return (
-    <div className="relative min-h-screen overflow-hidden">
-      <NeonBackground />
-
-      <div className="absolute inset-0 opacity-70">
-        <div className="neon-grid" />
-      </div>
+    <div className="relative min-h-screen">
+      <div className="neon-grid opacity-70" />
 
       <header className="relative z-10 flex items-center justify-between max-w-7xl mx-auto px-6 py-6">
         <div className="flex items-center gap-3">
@@ -129,6 +230,9 @@ export default function Home() {
         </nav>
         <a href="#contact" className="rounded-xl px-4 py-2 text-sm font-medium bg-white/10 hover:bg-white/15 transition">Get Proposal</a>
       </header>
+
+      {/* Animated Background */}
+      <AnimatedBackground />
 
       <main className="relative z-10 max-w-7xl mx-auto px-6 pt-12 pb-24 md:pt-24">
         <section className="grid md:grid-cols-12 gap-8 items-center">
