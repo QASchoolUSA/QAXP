@@ -244,8 +244,10 @@ export default function Home() {
 
       <header className="relative z-10 flex items-center justify-between max-w-7xl mx-auto px-6 py-6">
         <div className="flex items-center gap-3">
-          <div className="h-8 w-8 rounded-md bg-gradient-to-br from-[#00e5ff] via-[#7a00ff] to-[#ff00ff] blur-[0.5px]" />
-          <span className="font-semibold tracking-widest text-sm text-white/80">NEONSTUDIO</span>
+          <div className="logo-animated h-12 w-12 rounded-lg bg-black/60 flex flex-col items-center justify-center shadow-lg shadow-purple-500/50 transform hover:scale-105 transition-transform duration-300" style={{ boxShadow: '0 8px 25px rgba(122, 0, 255, 0.4), 0 4px 15px rgba(0, 229, 255, 0.3), inset 0 2px 4px rgba(255, 255, 255, 0.2)' }}>
+             <span className="text-white font-bold text-xl leading-none" style={{ fontFamily: 'var(--font-impact)' }}>QA</span>
+                <span className="text-white font-bold text-xl leading-none" style={{ fontFamily: 'var(--font-impact)' }}>XP</span>
+           </div>
         </div>
         <nav className="hidden md:flex items-center gap-6 text-sm text-white/70">
           <a href="#services" className="hover:text-white transition">Services</a>
@@ -334,7 +336,7 @@ export default function Home() {
       </main>
 
       <footer className="relative z-10 max-w-7xl mx-auto px-6 pb-10 text-white/50 text-sm">
-        © {new Date().getFullYear()} NeonStudio. All rights reserved.
+        © {new Date().getFullYear()} QAXP. All rights reserved.
       </footer>
     </div>
   )
