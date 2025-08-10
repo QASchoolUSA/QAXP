@@ -137,7 +137,7 @@ export default function Home() {
               Futuristic Web Design, Marketing & SEO
             </h1>
             <p className="text-white/70 text-lg md:text-xl max-w-2xl">
-              We craft hyper-visual, conversion-obsessed experiences. Neon aesthetics. Cyberpunk energy. Search engines can't ignore it. Neither will your customers.
+              We craft hyper-visual, conversion-obsessed experiences. Neon aesthetics. Cyberpunk energy. Search engines can&apos;t ignore it. Neither will your customers.
             </p>
             <div className="flex flex-wrap gap-4">
               <a href="#contact" className="neon-border rounded-2xl px-6 py-3 bg-black/50 backdrop-blur-md font-semibold">Start a Project</a>
@@ -173,7 +173,7 @@ export default function Home() {
                   </svg>
                 </div>
                 <div className="mt-6 text-sm text-white/70">
-                  Concept render of your brand's future UI. Real builds ship in weeks, not months.
+                  Concept render of your brand&apos;s future UI. Real builds ship in weeks, not months.
                 </div>
               </div>
             </div>
@@ -219,8 +219,8 @@ export default function Home() {
         <section id="contact" className="mt-20">
           <div className="neon-border rounded-2xl p-[1px] max-w-3xl">
             <div className="rounded-2xl bg-black/60 p-8">
-              <h4 className="glow text-2xl font-bold mb-2">Let's build something iconic.</h4>
-              <p className="text-white/70 mb-6">Tell us about your goals. We'll reply within 24 hours with a plan.</p>
+              <h4 className="glow text-2xl font-bold mb-2">Let&apos;s build something iconic.</h4>
+              <p className="text-white/70 mb-6">Tell us about your goals. We&apos;ll reply within 24 hours with a plan.</p>
               <form className="grid md:grid-cols-3 gap-4">
                 <input className="rounded-xl bg-white/5 px-4 py-3 outline-none focus:bg-white/10 transition" placeholder="Your Name" />
                 <input className="rounded-xl bg-white/5 px-4 py-3 outline-none focus:bg-white/10 transition" placeholder="Email" type="email" />
