@@ -1,6 +1,7 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
+import Link from 'next/link'
 
 interface Particle {
   x: number
@@ -238,6 +239,8 @@ function AnimatedBackground() {
 }
 
 export default function Home() {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  
   return (
     <div className="relative min-h-screen">
       <div className="neon-grid opacity-70" />
@@ -249,13 +252,51 @@ export default function Home() {
                 <span className="text-white font-bold text-xl leading-none" style={{ fontFamily: 'var(--font-impact)' }}>XP</span>
            </div>
         </div>
+        
+        {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center gap-6 text-sm text-white/70">
           <a href="#services" className="hover:text-white transition">Services</a>
-          <a href="#work" className="hover:text-white transition">Work</a>
+          <Link href="/work" className="hover:text-white transition">Work</Link>
           <a href="#contact" className="hover:text-white transition">Contact</a>
         </nav>
-        <a href="#contact" className="rounded-xl px-4 py-2 text-sm font-medium bg-white/10 hover:bg-white/15 transition">Get Proposal</a>
+        
+        {/* Desktop CTA */}
+        <a href="#contact" className="hidden md:block rounded-xl px-4 py-2 text-sm font-medium bg-white/10 hover:bg-white/15 transition">Get Proposal</a>
+        
+        {/* Mobile Menu Button */}
+        <button 
+          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          className="md:hidden flex flex-col items-center justify-center w-8 h-8 space-y-1 group"
+        >
+          <span className={`block w-6 h-0.5 bg-white transition-all duration-300 ${mobileMenuOpen ? 'rotate-45 translate-y-2' : ''}`}></span>
+          <span className={`block w-6 h-0.5 bg-white transition-all duration-300 ${mobileMenuOpen ? 'opacity-0' : ''}`}></span>
+          <span className={`block w-6 h-0.5 bg-white transition-all duration-300 ${mobileMenuOpen ? '-rotate-45 -translate-y-2' : ''}`}></span>
+        </button>
       </header>
+      
+      {/* Mobile Menu */}
+      {mobileMenuOpen && (
+        <div className="md:hidden fixed inset-0 z-50 bg-black/95 backdrop-blur-sm">
+          <div className="flex flex-col items-center justify-center h-full space-y-8">
+            <button 
+              onClick={() => setMobileMenuOpen(false)}
+              className="absolute top-6 right-6 flex flex-col items-center justify-center w-8 h-8 space-y-1"
+            >
+              <span className="block w-6 h-0.5 bg-white rotate-45 translate-y-2"></span>
+              <span className="block w-6 h-0.5 bg-white opacity-0"></span>
+              <span className="block w-6 h-0.5 bg-white -rotate-45 -translate-y-2"></span>
+            </button>
+            
+            <nav className="flex flex-col items-center space-y-6 text-xl">
+              <a href="#services" onClick={() => setMobileMenuOpen(false)} className="text-white/70 hover:text-white transition glow">Services</a>
+              <Link href="/work" onClick={() => setMobileMenuOpen(false)} className="text-white/70 hover:text-white transition glow">Work</Link>
+              <a href="#contact" onClick={() => setMobileMenuOpen(false)} className="text-white/70 hover:text-white transition glow">Contact</a>
+            </nav>
+            
+            <a href="#contact" onClick={() => setMobileMenuOpen(false)} className="rounded-xl px-6 py-3 text-lg font-medium bg-white/10 hover:bg-white/15 transition glow">Get Proposal</a>
+          </div>
+        </div>
+      )}
 
       {/* Animated Background */}
       <AnimatedBackground />
@@ -271,7 +312,7 @@ export default function Home() {
              </p>
              <div className="flex flex-wrap gap-4">
                <a href="#contact" className="rounded-2xl px-6 py-3 bg-white/10 hover:bg-white/15 transition font-semibold">Start a Project</a>
-               <a href="#work" className="rounded-2xl px-6 py-3 bg-white/10 hover:bg-white/15 transition font-semibold">See Our Work</a>
+               <Link href="/work" className="rounded-2xl px-6 py-3 bg-white/10 hover:bg-white/15 transition font-semibold">See Our Work</Link>
              </div>
              <div className="flex items-center gap-6 pt-2 text-white/60 text-sm">
                <span>Web Design</span>
