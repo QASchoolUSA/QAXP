@@ -1,8 +1,13 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #05050a;
+  --foreground: #e6e6f0;
+  --neon-pink: #ff00ff;
+  --neon-cyan: #00e5ff;
+  --neon-purple: #7a00ff;
+  --grid-color: rgba(0, 229, 255, 0.15);
+  --glow: drop-shadow(0 0 6px var(--neon-cyan)) drop-shadow(0 0 16px var(--neon-pink));
 }
 
 @theme inline {
@@ -12,15 +17,45 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
 body {
-  background: var(--background);
+  background: radial-gradient(1200px 800px at 80% 20%, rgba(122,0,255,0.25), transparent 40%),
+              radial-gradient(1000px 700px at 20% 80%, rgba(0,229,255,0.2), transparent 40%),
+              linear-gradient(180deg, #02030a 0%, #05050a 40%, #02030a 100%);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Neon grid floor */
+.neon-grid {
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 45vh;
+  background-image: linear-gradient(var(--grid-color) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
+  background-size: 60px 60px, 60px 60px;
+  transform: perspective(600px) rotateX(60deg);
+  transform-origin: bottom;
+  box-shadow: 0 -20px 60px rgba(0,0,0,0.6) inset;
+}
+
+/* Neon animated gradient border */
+.neon-border {
+  position: relative;
+}
+.neon-border::before {
+  content: "";
+  position: absolute; inset: -2px;
+  z-index: -1; border-radius: 16px;
+  background: conic-gradient(from 0deg,
+    var(--neon-pink), var(--neon-cyan), var(--neon-purple), var(--neon-pink));
+  filter: blur(8px) saturate(160%);
+  animation: spin 8s linear infinite;
+}
+
+@keyframes spin { to { transform: rotate(360deg) } }
+
+/* Glow text */
+.glow {
+  text-shadow: 0 0 8px rgba(255,0,255,0.6), 0 0 18px rgba(0,229,255,0.55), 0 0 30px rgba(122,0,255,0.5);
+  filter: brightness(1.3);
 }
