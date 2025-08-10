@@ -2,11 +2,35 @@
 
 import { useEffect, useRef } from 'react'
 
+interface Particle {
+  x: number
+  y: number
+  size: number
+  speedX: number
+  speedY: number
+  opacity: number
+  color: string
+  pulse: number
+}
+
+interface Shape {
+  x: number
+  y: number
+  size: number
+  rotation: number
+  rotationSpeed: number
+  speedX: number
+  speedY: number
+  opacity: number
+  type: number
+  color: string
+}
+
 function AnimatedBackground() {
   const canvasRef = useRef<HTMLCanvasElement | null>(null)
   const rafRef = useRef<number | null>(null)
   const mouseRef = useRef({ x: 0, y: 0 })
-  const particlesRef = useRef<any[]>([])
+  const particlesRef = useRef<Particle[]>([])
 
   useEffect(() => {
     const canvas = canvasRef.current
@@ -67,7 +91,7 @@ function AnimatedBackground() {
     window.addEventListener('mousemove', handleMouseMove)
     
     // Draw functions
-    const drawParticle = (particle: any) => {
+    const drawParticle = (particle: Particle) => {
       ctx.save()
       ctx.globalAlpha = particle.opacity
       ctx.fillStyle = particle.color
@@ -79,7 +103,7 @@ function AnimatedBackground() {
       ctx.restore()
     }
     
-    const drawShape = (shape: any) => {
+    const drawShape = (shape: Shape) => {
       ctx.save()
       ctx.translate(shape.x, shape.y)
       ctx.rotate(shape.rotation)
@@ -129,7 +153,7 @@ function AnimatedBackground() {
       ctx.fillRect(0, 0, canvas.width, canvas.height)
       
       // Update and draw particles
-      particlesRef.current.forEach((particle, index) => {
+      particlesRef.current.forEach((particle) => {
         // Mouse interaction
         const dx = mouseRef.current.x - particle.x
         const dy = mouseRef.current.y - particle.y
