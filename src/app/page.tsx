@@ -127,7 +127,7 @@ export default function Home() {
           <a href="#work" className="hover:text-white transition">Work</a>
           <a href="#contact" className="hover:text-white transition">Contact</a>
         </nav>
-        <a href="#contact" className="neon-border rounded-xl px-4 py-2 text-sm font-medium bg-black/50 backdrop-blur-md">Get Proposal</a>
+        <a href="#contact" className="rounded-xl px-4 py-2 text-sm font-medium bg-white/10 hover:bg-white/15 transition">Get Proposal</a>
       </header>
 
       <main className="relative z-10 max-w-7xl mx-auto px-6 pt-12 pb-24 md:pt-24">
@@ -140,7 +140,7 @@ export default function Home() {
                We craft hyper-visual, conversion-obsessed experiences. Neon aesthetics. Cyberpunk energy. Search engines can&apos;t ignore it. Neither will your customers.
              </p>
              <div className="flex flex-wrap gap-4">
-               <a href="#contact" className="neon-border rounded-2xl px-6 py-3 bg-black/50 backdrop-blur-md font-semibold">Start a Project</a>
+               <a href="#contact" className="rounded-2xl px-6 py-3 bg-white/10 hover:bg-white/15 transition font-semibold">Start a Project</a>
                <a href="#work" className="rounded-2xl px-6 py-3 bg-white/10 hover:bg-white/15 transition font-semibold">See Our Work</a>
              </div>
              <div className="flex items-center gap-6 pt-2 text-white/60 text-sm">
@@ -154,7 +154,7 @@ export default function Home() {
 
         <section id="services" className="mt-20 grid md:grid-cols-3 gap-6">
           <div className="neon-border rounded-2xl p-[1px]">
-            <div className="rounded-2xl bg-black/60 p-6 h-full">
+            <div className="card-hover rounded-2xl bg-black/60 p-6 h-full">
               <h3 className="glow text-xl font-bold mb-2">Web Design</h3>
               <p className="text-white/70 mb-4">Immersive, high-performance sites with obsessive detail and motion.</p>
               <ul className="text-white/70 space-y-2 text-sm">
@@ -165,7 +165,7 @@ export default function Home() {
             </div>
           </div>
           <div className="neon-border rounded-2xl p-[1px]">
-            <div className="rounded-2xl bg-black/60 p-6 h-full">
+            <div className="card-hover rounded-2xl bg-black/60 p-6 h-full">
               <h3 className="glow text-xl font-bold mb-2">Marketing</h3>
               <p className="text-white/70 mb-4">Full-funnel strategies engineered for compounding ROI.</p>
               <ul className="text-white/70 space-y-2 text-sm">
@@ -176,7 +176,7 @@ export default function Home() {
             </div>
           </div>
           <div className="neon-border rounded-2xl p-[1px]">
-            <div className="rounded-2xl bg-black/60 p-6 h-full">
+            <div className="card-hover rounded-2xl bg-black/60 p-6 h-full">
               <h3 className="glow text-xl font-bold mb-2">SEO</h3>
               <p className="text-white/70 mb-4">Technical SEO that makes algorithms and humans happy.</p>
               <ul className="text-white/70 space-y-2 text-sm">
@@ -190,7 +190,7 @@ export default function Home() {
 
         <section id="contact" className="mt-20">
           <div className="neon-border rounded-2xl p-[1px] max-w-3xl">
-            <div className="rounded-2xl bg-black/60 p-8">
+            <div className="card-hover rounded-2xl bg-black/60 p-8">
               <h4 className="glow text-2xl font-bold mb-2">Let&apos;s build something iconic.</h4>
               <p className="text-white/70 mb-6">Tell us about your goals. We&apos;ll reply within 24 hours with a plan.</p>
               <form className="grid md:grid-cols-3 gap-4">
