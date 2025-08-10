@@ -132,53 +132,25 @@ export default function Home() {
 
       <main className="relative z-10 max-w-7xl mx-auto px-6 pt-12 pb-24 md:pt-24">
         <section className="grid md:grid-cols-12 gap-8 items-center">
-          <div className="md:col-span-7 space-y-6">
-            <h1 className="glow text-4xl md:text-6xl font-extrabold leading-tight">
-              Futuristic Web Design, Marketing & SEO
-            </h1>
-            <p className="text-white/70 text-lg md:text-xl max-w-2xl">
-              We craft hyper-visual, conversion-obsessed experiences. Neon aesthetics. Cyberpunk energy. Search engines can&apos;t ignore it. Neither will your customers.
-            </p>
-            <div className="flex flex-wrap gap-4">
-              <a href="#contact" className="neon-border rounded-2xl px-6 py-3 bg-black/50 backdrop-blur-md font-semibold">Start a Project</a>
-              <a href="#work" className="rounded-2xl px-6 py-3 bg-white/10 hover:bg-white/15 transition font-semibold">See Our Work</a>
-            </div>
-            <div className="flex items-center gap-6 pt-2 text-white/60 text-sm">
-              <span>Web Design</span>
-              <span>Brand & Growth</span>
-              <span>Technical SEO</span>
-            </div>
-          </div>
-          <div className="md:col-span-5">
-            <div className="neon-border rounded-3xl p-1">
-              <div className="rounded-3xl bg-black/60 p-8 backdrop-blur-md">
-                <div className="aspect-[4/3] w-full rounded-2xl flex items-center justify-center">
-                  <svg className="w-full h-full" viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <defs>
-                      <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
-                        <stop offset="0%" stopColor="#00e5ff" />
-                        <stop offset="100%" stopColor="#ff00ff" />
-                      </linearGradient>
-                    </defs>
-                    <rect x="10" y="10" width="380" height="280" rx="22" stroke="url(#g1)" strokeWidth="2"/>
-                    <g filter="url(#f0)">
-                      <path d="M60,220 C120,160 180,240 240,200 C300,160 320,80 360,120" stroke="#00e5ff" strokeWidth="2" />
-                      <path d="M40,200 C110,140 190,210 250,170 C300,140 330,70 360,95" stroke="#ff00ff" strokeWidth="2" />
-                    </g>
-                    <defs>
-                      <filter id="f0">
-                        <feGaussianBlur in="SourceGraphic" stdDeviation="0.6"/>
-                      </filter>
-                    </defs>
-                  </svg>
-                </div>
-                <div className="mt-6 text-sm text-white/70">
-                  Concept render of your brand&apos;s future UI. Real builds ship in weeks, not months.
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
+          <div className="md:col-span-12 space-y-6">
+             <h1 className="glow text-4xl md:text-6xl font-extrabold leading-tight">
+               Futuristic Web Design, Marketing & SEO
+             </h1>
+             <p className="text-white/70 text-lg md:text-xl max-w-2xl">
+               We craft hyper-visual, conversion-obsessed experiences. Neon aesthetics. Cyberpunk energy. Search engines can&apos;t ignore it. Neither will your customers.
+             </p>
+             <div className="flex flex-wrap gap-4">
+               <a href="#contact" className="neon-border rounded-2xl px-6 py-3 bg-black/50 backdrop-blur-md font-semibold">Start a Project</a>
+               <a href="#work" className="rounded-2xl px-6 py-3 bg-white/10 hover:bg-white/15 transition font-semibold">See Our Work</a>
+             </div>
+             <div className="flex items-center gap-6 pt-2 text-white/60 text-sm">
+               <span>Web Design</span>
+               <span>Brand & Growth</span>
+               <span>Technical SEO</span>
+             </div>
+           </div>
+
+         </section>
 
         <section id="services" className="mt-20 grid md:grid-cols-3 gap-6">
           <div className="neon-border rounded-2xl p-[1px]">
