@@ -6,7 +6,7 @@ export default function Home() {
   
   return (
     <div className="relative min-h-screen">
-      <Iridescence color={[0.3, 0.5, 0.8]} speed={0.5} amplitude={0.05} mouseReact={false} />
+      <Iridescence color={[0.3, 0.05, 0.4]} speed={0.5} amplitude={0.05} mouseReact={false} />
       <header className="relative z-10 flex items-center justify-between max-w-7xl mx-auto px-6 py-6">
         <div className="flex items-center gap-3">
           <div className="logo-animated h-12 w-12 rounded-lg bg-black/60 flex flex-col items-center justify-center shadow-lg shadow-purple-500/50" style={{ boxShadow: '0 8px 25px rgba(122, 0, 255, 0.4), 0 4px 15px rgba(0, 229, 255, 0.3), inset 0 2px 4px rgba(255, 255, 255, 0.2)' }}>
