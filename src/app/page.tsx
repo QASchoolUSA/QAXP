@@ -1,5 +1,4 @@
 import Link from 'next/link'
-import HybridBackground from './components/HybridBackground'
 import ClientNavigation from './components/ClientNavigation'
 
 export default function Home() {
@@ -30,8 +29,7 @@ export default function Home() {
         <ClientNavigation />
       </header>
 
-      {/* Animated Background */}
-      <HybridBackground />
+
 
       <main className="relative z-10 max-w-7xl mx-auto px-6 pt-12 pb-24 md:pt-24">
         <section className="grid md:grid-cols-12 gap-8 items-center">
