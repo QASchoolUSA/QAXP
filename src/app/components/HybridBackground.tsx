@@ -32,7 +32,6 @@ function detectDeviceCapabilities(): DeviceCapabilities {
   if (gl) {
     const webglContext = gl as WebGLRenderingContext
     const renderer = webglContext.getParameter(webglContext.RENDERER)
-    const vendor = webglContext.getParameter(webglContext.VENDOR)
     
     // More conservative GPU detection - only allow dedicated GPUs
     hasGoodGPU = (
