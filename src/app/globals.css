@@ -34,11 +34,6 @@ body::before {
   pointer-events: none;
 }
 
-/* Optimized grid floor - DISABLED */
-.neon-grid {
-  display: none;
-}
-
 /* Enhanced Neon Border with Holographic Effects */
 .neon-border {
   position: relative;
@@ -75,7 +70,7 @@ body::before {
   opacity: 1;
 }
 
-/* Removed keyframe animations for static design */
+
 
 .card-hover {
   position: relative;
