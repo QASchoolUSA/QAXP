@@ -34,16 +34,9 @@ body::before {
   pointer-events: none;
 }
 
-/* Optimized grid floor */
+/* Optimized grid floor - DISABLED */
 .neon-grid {
-  position: fixed;
-  inset: 0 0 auto 0;
-  height: 45vh;
-  background-image: linear-gradient(var(--grid-color) 1px, transparent 1px),
-    linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
-  background-size: 60px 60px, 60px 60px;
-  opacity: 0.3;
-  z-index: -1;
+  display: none;
 }
 
 /* Enhanced Neon Border with Holographic Effects */
