@@ -29,14 +29,12 @@ body::before {
   left: 0;
   width: 100%;
   height: 100%;
-  background: radial-gradient(1200px 800px at 80% 20%, rgba(122,0,255,0.25), transparent 40%),
-              radial-gradient(1000px 700px at 20% 80%, rgba(0,229,255,0.2), transparent 40%),
-              linear-gradient(180deg, #02030a 0%, #05050a 40%, #02030a 100%);
+  background: linear-gradient(180deg, #02030a 0%, #05050a 50%, #02030a 100%);
   z-index: -10;
   pointer-events: none;
 }
 
-/* Neon grid floor */
+/* Optimized grid floor */
 .neon-grid {
   position: fixed;
   inset: 0 0 auto 0;
@@ -44,9 +42,7 @@ body::before {
   background-image: linear-gradient(var(--grid-color) 1px, transparent 1px),
     linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
   background-size: 60px 60px, 60px 60px;
-  transform: perspective(600px) rotateX(-60deg);
-  transform-origin: top;
-  box-shadow: 0 -20px 60px rgba(0,0,0,0.6) inset;
+  opacity: 0.3;
   z-index: -1;
 }
 
@@ -56,57 +52,43 @@ body::before {
   overflow: hidden;
 }
 
-/* Static gradient border */
+/* Optimized static gradient border */
 .neon-border::before {
   content: "";
   position: absolute;
-  inset: -3px;
+  inset: -2px;
   z-index: -2;
   border-radius: 18px;
   background: linear-gradient(45deg,
     var(--neon-pink) 0%,
-    var(--neon-cyan) 25%,
-    var(--neon-purple) 50%,
-    var(--neon-pink) 75%,
-    var(--neon-cyan) 100%);
-  filter: blur(12px) saturate(180%) brightness(1.2);
+    var(--neon-cyan) 50%,
+    var(--neon-purple) 100%);
+  opacity: 0.8;
 }
 
-/* Inner holographic glow */
+/* Simplified inner glow */
 .neon-border::after {
   content: "";
   position: absolute;
   inset: 1px;
   border-radius: 16px;
   z-index: -1;
-  background:
-    radial-gradient(circle at 20% 20%, rgba(255,0,255,0.15) 0%, transparent 50%),
-    radial-gradient(circle at 80% 80%, rgba(0,229,255,0.12) 0%, transparent 50%),
-    radial-gradient(circle at 50% 50%, rgba(122,0,255,0.08) 0%, transparent 70%),
-    linear-gradient(135deg, rgba(255,0,255,0.05), rgba(0,229,255,0.05));
-  filter: blur(8px) saturate(150%);
-  mix-blend-mode: screen;
+  background: linear-gradient(135deg, rgba(255,0,255,0.1), rgba(0,229,255,0.1));
+  opacity: 0.6;
 }
 
-/* Hover effect */
+/* Simplified hover effect */
 .neon-border:hover::before {
-  filter: blur(8px) saturate(200%) brightness(1.4);
+  opacity: 1;
 }
 
 /* Removed keyframe animations for static design */
 
 .card-hover {
   position: relative;
-  backdrop-filter: blur(20px);
-  background: 
-    radial-gradient(circle at 30% 20%, rgba(255,0,255,0.08) 0%, transparent 50%),
-    radial-gradient(circle at 70% 80%, rgba(0,229,255,0.06) 0%, transparent 50%),
-    linear-gradient(135deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.5) 100%);
+  background: rgba(0,0,0,0.6);
   border: 1px solid rgba(255,255,255,0.1);
-  box-shadow: 
-    inset 0 1px 0 rgba(255,255,255,0.1),
-    0 10px 30px rgba(0,0,0,0.3),
-    0 0 20px rgba(122,0,255,0.1);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
 }
 
 /* Removed card hover animations */
@@ -115,43 +97,28 @@ body::before {
 
 /* Removed shimmer animation */
 
-/* Glow text */
+/* Optimized glow text */
 .glow {
-  text-shadow: 0 0 8px rgba(255,0,255,0.6), 0 0 18px rgba(0,229,255,0.55), 0 0 30px rgba(122,0,255,0.5);
-  filter: brightness(1.3);
+  text-shadow: 0 0 10px rgba(255,0,255,0.4), 0 0 20px rgba(0,229,255,0.3);
+  color: rgba(255,255,255,0.95);
 }
 
-/* Enhanced Form Elements */
+/* Optimized Form Elements */
 input, textarea {
   position: relative;
-  background: 
-    linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.02) 100%),
-    radial-gradient(circle at 20% 20%, rgba(122,0,255,0.08) 0%, transparent 70%);
+  background: rgba(255,255,255,0.05);
   border: 1px solid rgba(255,255,255,0.1);
-  backdrop-filter: blur(10px);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 
-    inset 0 1px 0 rgba(255,255,255,0.1),
-    0 4px 12px rgba(0,0,0,0.2);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
 }
 
 input:focus, textarea:focus {
-  background: 
-    linear-gradient(135deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.04) 100%),
-    radial-gradient(circle at 20% 20%, rgba(122,0,255,0.15) 0%, transparent 70%),
-    radial-gradient(circle at 80% 80%, rgba(0,229,255,0.1) 0%, transparent 70%);
+  background: rgba(255,255,255,0.08);
   border-color: rgba(122,0,255,0.5);
-  box-shadow: 
-    inset 0 1px 0 rgba(255,255,255,0.2),
-    0 0 0 1px rgba(122,0,255,0.3),
-    0 0 20px rgba(122,0,255,0.2),
-    0 8px 25px rgba(0,0,0,0.3);
-  transform: translateY(-1px);
+  box-shadow: 0 0 0 1px rgba(122,0,255,0.3), 0 4px 12px rgba(0,0,0,0.3);
 }
 
 input::placeholder, textarea::placeholder {
   color: rgba(255,255,255,0.4);
-  transition: color 0.3s ease;
 }
 
 input:focus::placeholder, textarea:focus::placeholder {
@@ -165,19 +132,14 @@ button.neon-border {
   font-weight: 600;
   letter-spacing: 0.5px;
   text-transform: uppercase;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 button.neon-border:hover {
-  transform: translateY(-2px);
-  box-shadow: 
-    0 10px 30px rgba(122,0,255,0.3),
-    0 0 40px rgba(0,229,255,0.2);
+  box-shadow: 0 4px 12px rgba(122,0,255,0.3);
 }
 
 button.neon-border:active {
-  transform: translateY(0);
-  transition: transform 0.1s ease;
+  box-shadow: 0 2px 6px rgba(122,0,255,0.2);
 }
 
 /* Animated Logo with Color Changing Effects */
@@ -198,7 +160,7 @@ button.neon-border:active {
     var(--neon-purple) 50%,
     var(--neon-pink) 75%,
     var(--neon-cyan) 100%);
-  filter: blur(10px) saturate(180%) brightness(1.2);
+  opacity: 0.8;
 }
 
 .logo-animated::after {
@@ -207,13 +169,8 @@ button.neon-border:active {
   inset: 0px;
   border-radius: 12px;
   z-index: 0;
-  background:
-    radial-gradient(circle at 20% 20%, rgba(255,0,255,0.15) 0%, transparent 50%),
-    radial-gradient(circle at 80% 80%, rgba(0,229,255,0.12) 0%, transparent 50%),
-    radial-gradient(circle at 50% 50%, rgba(122,0,255,0.08) 0%, transparent 70%),
-    linear-gradient(135deg, rgba(255,0,255,0.05), rgba(0,229,255,0.05));
-  filter: blur(4px) saturate(150%);
-  mix-blend-mode: screen;
+  background: linear-gradient(135deg, rgba(255,0,255,0.08), rgba(0,229,255,0.08));
+  opacity: 0.5;
 }
 
 .logo-animated > * {
@@ -222,5 +179,5 @@ button.neon-border:active {
 }
 
 .logo-animated:hover::before {
-  filter: blur(8px) saturate(200%) brightness(1.4);
+  opacity: 1;
 }
