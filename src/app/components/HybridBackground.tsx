@@ -43,7 +43,7 @@ function detectDeviceCapabilities(): DeviceCapabilities {
   }
 
   // Check device memory and cores
-  const memory = (navigator as any).deviceMemory || 4
+  const memory = (navigator as Navigator & { deviceMemory?: number }).deviceMemory || 4
   const cores = navigator.hardwareConcurrency || 2
   
   const isHighPerformance = memory >= 4 && cores >= 4 && hasGoodGPU
@@ -52,7 +52,6 @@ function detectDeviceCapabilities(): DeviceCapabilities {
 }
 
 export default function HybridBackground() {
-  const [capabilities, setCapabilities] = useState<DeviceCapabilities | null>(null)
   const [renderMode, setRenderMode] = useState<'loading' | 'static' | 'animated'>('loading')
   const [isMounted, setIsMounted] = useState(false)
 
@@ -60,7 +59,6 @@ export default function HybridBackground() {
     setIsMounted(true)
     
     const caps = detectDeviceCapabilities()
-    setCapabilities(caps)
     
     // Decide rendering mode
     if (!caps.supportsWebGL || !caps.isHighPerformance) {

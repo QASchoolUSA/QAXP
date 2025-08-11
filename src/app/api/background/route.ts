@@ -8,7 +8,7 @@ export async function GET(request: NextRequest) {
   const particleCount = parseInt(searchParams.get('particles') || '50')
   
   // Generate SVG background with particles (lighter than canvas)
-  const particles = Array.from({ length: particleCount }, (_, i) => {
+  const particles = Array.from({ length: particleCount }, () => {
     const x = Math.random() * width
     const y = Math.random() * height
     const size = Math.random() * 3 + 1

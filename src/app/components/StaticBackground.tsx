@@ -8,7 +8,7 @@ interface StaticBackgroundProps {
 
 // Deterministic random number generator using seed
 function seededRandom(seed: number) {
-  let x = Math.sin(seed) * 10000
+  const x = Math.sin(seed) * 10000
   return x - Math.floor(x)
 }
 
