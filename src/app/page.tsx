@@ -9,7 +9,7 @@ export default function Home() {
 
       <header className="relative z-10 flex items-center justify-between max-w-7xl mx-auto px-6 py-6">
         <div className="flex items-center gap-3">
-          <div className="logo-animated h-12 w-12 rounded-lg bg-black/60 flex flex-col items-center justify-center shadow-lg shadow-purple-500/50 transform hover:scale-105 transition-transform duration-300" style={{ boxShadow: '0 8px 25px rgba(122, 0, 255, 0.4), 0 4px 15px rgba(0, 229, 255, 0.3), inset 0 2px 4px rgba(255, 255, 255, 0.2)' }}>
+          <div className="logo-animated h-12 w-12 rounded-lg bg-black/60 flex flex-col items-center justify-center shadow-lg shadow-purple-500/50" style={{ boxShadow: '0 8px 25px rgba(122, 0, 255, 0.4), 0 4px 15px rgba(0, 229, 255, 0.3), inset 0 2px 4px rgba(255, 255, 255, 0.2)' }}>
              <span className="text-white font-bold text-xl leading-none" style={{ fontFamily: 'var(--font-impact)' }}>QA</span>
                 <span className="text-white font-bold text-xl leading-none" style={{ fontFamily: 'var(--font-impact)' }}>XP</span>
            </div>
@@ -17,13 +17,13 @@ export default function Home() {
         
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center gap-6 text-sm text-white/70">
-          <a href="#services" className="hover:text-white transition">Services</a>
-          <Link href="/work" className="hover:text-white transition">Work</Link>
-          <a href="#contact" className="hover:text-white transition">Contact</a>
+          <a href="#services" className="hover:text-white">Services</a>
+          <Link href="/work" className="hover:text-white">Work</Link>
+          <a href="#contact" className="hover:text-white">Contact</a>
         </nav>
         
         {/* Desktop CTA */}
-        <a href="#contact" className="hidden md:block rounded-xl px-4 py-2 text-sm font-medium bg-white/10 hover:bg-white/15 transition">Get Proposal</a>
+        <a href="#contact" className="hidden md:block rounded-xl px-4 py-2 text-sm font-medium bg-white/10 hover:bg-white/15">Get Proposal</a>
         
         {/* Mobile Navigation */}
         <ClientNavigation />
@@ -41,8 +41,8 @@ export default function Home() {
                We craft hyper-visual, conversion-obsessed experiences. Neon aesthetics. Cyberpunk energy. Search engines can&apos;t ignore it. Neither will your customers.
              </p>
              <div className="flex flex-wrap gap-4">
-               <a href="#contact" className="rounded-2xl px-6 py-3 bg-white/10 hover:bg-white/15 transition font-semibold">Start a Project</a>
-               <Link href="/work" className="rounded-2xl px-6 py-3 bg-white/10 hover:bg-white/15 transition font-semibold">See Our Work</Link>
+               <a href="#contact" className="rounded-2xl px-6 py-3 bg-white/10 hover:bg-white/15 font-semibold">Start a Project</a>
+               <Link href="/work" className="rounded-2xl px-6 py-3 bg-white/10 hover:bg-white/15 font-semibold">See Our Work</Link>
              </div>
              <div className="flex items-center gap-6 pt-2 text-white/60 text-sm">
                <span>Web Design</span>
@@ -95,10 +95,10 @@ export default function Home() {
               <h4 className="glow text-2xl font-bold mb-2">Let&apos;s build something iconic.</h4>
               <p className="text-white/70 mb-6">Tell us about your goals. We&apos;ll reply within 24 hours with a plan.</p>
               <form className="grid md:grid-cols-3 gap-4">
-                <input className="rounded-xl bg-white/5 px-4 py-3 outline-none focus:bg-white/10 transition" placeholder="Your Name" />
-                <input className="rounded-xl bg-white/5 px-4 py-3 outline-none focus:bg-white/10 transition" placeholder="Email" type="email" />
-                <input className="rounded-xl bg-white/5 px-4 py-3 outline-none focus:bg-white/10 transition md:col-span-1" placeholder="Budget" />
-                <textarea className="rounded-xl bg-white/5 px-4 py-3 outline-none focus:bg-white/10 transition md:col-span-3" placeholder="What are we building together?" rows={4} />
+                <input className="rounded-xl bg-white/5 px-4 py-3 outline-none focus:bg-white/10" placeholder="Your Name" />
+                <input className="rounded-xl bg-white/5 px-4 py-3 outline-none focus:bg-white/10" placeholder="Email" type="email" />
+                <input className="rounded-xl bg-white/5 px-4 py-3 outline-none focus:bg-white/10 md:col-span-1" placeholder="Budget" />
+                <textarea className="rounded-xl bg-white/5 px-4 py-3 outline-none focus:bg-white/10 md:col-span-3" placeholder="What are we building together?" rows={4} />
                 <button className="neon-border rounded-xl px-6 py-3 bg-black/60 font-semibold md:col-span-3">Request Proposal</button>
               </form>
             </div>

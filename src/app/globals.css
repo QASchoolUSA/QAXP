@@ -96,8 +96,6 @@ body::before {
 /* Removed keyframe animations for static design */
 
 .card-hover {
-  transform-style: preserve-3d;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   backdrop-filter: blur(20px);
   background: 
@@ -111,43 +109,11 @@ body::before {
     0 0 20px rgba(122,0,255,0.1);
 }
 
-.card-hover::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  background: linear-gradient(135deg, 
-    rgba(255,0,255,0.03) 0%, 
-    transparent 30%, 
-    rgba(0,229,255,0.02) 70%, 
-    transparent 100%);
-  opacity: 0;
-  transition: opacity 0.4s ease;
-  pointer-events: none;
-}
+/* Removed card hover animations */
 
-.card-hover:hover {
-  transform: perspective(1000px) translateZ(8px) rotateX(2deg) rotateY(-2deg) scale(1.02);
-  background: 
-    radial-gradient(circle at 30% 20%, rgba(255,0,255,0.12) 0%, transparent 50%),
-    radial-gradient(circle at 70% 80%, rgba(0,229,255,0.1) 0%, transparent 50%),
-    linear-gradient(135deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.6) 100%);
-  box-shadow: 
-    inset 0 1px 0 rgba(255,255,255,0.2),
-    0 20px 60px rgba(0,0,0,0.4),
-    0 0 40px rgba(122,0,255,0.2),
-    0 0 80px rgba(0,229,255,0.1);
-}
+/* Removed card hover effects */
 
-.card-hover:hover::before {
-  opacity: 1;
-  animation: shimmer 2s ease-in-out infinite;
-}
-
-@keyframes shimmer {
-  0% { background-position: -200% 0; }
-  100% { background-position: 200% 0; }
-}
+/* Removed shimmer animation */
 
 /* Glow text */
 .glow {

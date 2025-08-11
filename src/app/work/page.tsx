@@ -9,7 +9,7 @@ export default function Work() {
 
       <header className="relative z-10 flex items-center justify-between max-w-7xl mx-auto px-6 py-6">
         <div className="flex items-center gap-3">
-          <Link href="/" className="logo-animated h-12 w-12 rounded-lg bg-black/60 flex flex-col items-center justify-center shadow-lg shadow-purple-500/50 transform hover:scale-105 transition-transform duration-300" style={{ boxShadow: '0 8px 25px rgba(122, 0, 255, 0.4), 0 4px 15px rgba(0, 229, 255, 0.3), inset 0 2px 4px rgba(255, 255, 255, 0.2)' }}>
+          <Link href="/" className="logo-animated h-12 w-12 rounded-lg bg-black/60 flex flex-col items-center justify-center shadow-lg shadow-purple-500/50" style={{ boxShadow: '0 8px 25px rgba(122, 0, 255, 0.4), 0 4px 15px rgba(0, 229, 255, 0.3), inset 0 2px 4px rgba(255, 255, 255, 0.2)' }}>
              <span className="text-white font-bold text-xl leading-none" style={{ fontFamily: 'var(--font-impact)' }}>QA</span>
                 <span className="text-white font-bold text-xl leading-none" style={{ fontFamily: 'var(--font-impact)' }}>XP</span>
            </Link>
@@ -17,14 +17,14 @@ export default function Work() {
         
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center gap-6 text-sm text-white/70">
-          <Link href="/" className="hover:text-white transition">Home</Link>
-          <Link href="/#services" className="hover:text-white transition">Services</Link>
+          <Link href="/" className="hover:text-white">Home</Link>
+          <Link href="/#services" className="hover:text-white">Services</Link>
           <Link href="/work" className="text-white">Work</Link>
-          <Link href="/#contact" className="hover:text-white transition">Contact</Link>
+          <Link href="/#contact" className="hover:text-white">Contact</Link>
         </nav>
         
         {/* Desktop CTA */}
-        <Link href="/#contact" className="hidden md:block rounded-xl px-4 py-2 text-sm font-medium bg-white/10 hover:bg-white/15 transition">Get Proposal</Link>
+        <Link href="/#contact" className="hidden md:block rounded-xl px-4 py-2 text-sm font-medium bg-white/10 hover:bg-white/15">Get Proposal</Link>
         
         {/* Mobile Navigation */}
         <WorkNavigation />
@@ -59,8 +59,8 @@ export default function Work() {
                 <span className="px-2 py-1 bg-pink-500/20 text-pink-300 text-xs rounded">WebGL</span>
               </div>
               <div className="flex gap-3">
-                <a href="#" className="text-cyan-400 hover:text-cyan-300 text-sm transition">View Live →</a>
-                <a href="#" className="text-purple-400 hover:text-purple-300 text-sm transition">Case Study →</a>
+                <a href="#" className="text-cyan-400 hover:text-cyan-300 text-sm">View Live →</a>
+                <a href="#" className="text-purple-400 hover:text-purple-300 text-sm">Case Study →</a>
               </div>
             </div>
           </div>
@@ -79,8 +79,8 @@ export default function Work() {
                 <span className="px-2 py-1 bg-pink-500/20 text-pink-300 text-xs rounded">Stripe</span>
               </div>
               <div className="flex gap-3">
-                <a href="#" className="text-cyan-400 hover:text-cyan-300 text-sm transition">View Live →</a>
-                <a href="#" className="text-purple-400 hover:text-purple-300 text-sm transition">Case Study →</a>
+                <a href="#" className="text-cyan-400 hover:text-cyan-300 text-sm">View Live →</a>
+                <a href="#" className="text-purple-400 hover:text-purple-300 text-sm">Case Study →</a>
               </div>
             </div>
           </div>
@@ -99,8 +99,8 @@ export default function Work() {
                 <span className="px-2 py-1 bg-pink-500/20 text-pink-300 text-xs rounded">Python</span>
               </div>
               <div className="flex gap-3">
-                <a href="#" className="text-cyan-400 hover:text-cyan-300 text-sm transition">View Live →</a>
-                <a href="#" className="text-purple-400 hover:text-purple-300 text-sm transition">Case Study →</a>
+                <a href="#" className="text-cyan-400 hover:text-cyan-300 text-sm">View Live →</a>
+                <a href="#" className="text-purple-400 hover:text-purple-300 text-sm">Case Study →</a>
               </div>
             </div>
           </div>
@@ -119,8 +119,8 @@ export default function Work() {
                 <span className="px-2 py-1 bg-pink-500/20 text-pink-300 text-xs rounded">Solidity</span>
               </div>
               <div className="flex gap-3">
-                <a href="#" className="text-cyan-400 hover:text-cyan-300 text-sm transition">View Live →</a>
-                <a href="#" className="text-purple-400 hover:text-purple-300 text-sm transition">Case Study →</a>
+                <a href="#" className="text-cyan-400 hover:text-cyan-300 text-sm">View Live →</a>
+                <a href="#" className="text-purple-400 hover:text-purple-300 text-sm">Case Study →</a>
               </div>
             </div>
           </div>
@@ -139,8 +139,8 @@ export default function Work() {
                 <span className="px-2 py-1 bg-pink-500/20 text-pink-300 text-xs rounded">Node.js</span>
               </div>
               <div className="flex gap-3">
-                <a href="#" className="text-cyan-400 hover:text-cyan-300 text-sm transition">View Live →</a>
-                <a href="#" className="text-purple-400 hover:text-purple-300 text-sm transition">Case Study →</a>
+                <a href="#" className="text-cyan-400 hover:text-cyan-300 text-sm">View Live →</a>
+                <a href="#" className="text-purple-400 hover:text-purple-300 text-sm">Case Study →</a>
               </div>
             </div>
           </div>
@@ -159,8 +159,8 @@ export default function Work() {
                 <span className="px-2 py-1 bg-pink-500/20 text-pink-300 text-xs rounded">Redis</span>
               </div>
               <div className="flex gap-3">
-                <a href="#" className="text-cyan-400 hover:text-cyan-300 text-sm transition">View Live →</a>
-                <a href="#" className="text-purple-400 hover:text-purple-300 text-sm transition">Case Study →</a>
+                <a href="#" className="text-cyan-400 hover:text-cyan-300 text-sm">View Live →</a>
+                <a href="#" className="text-purple-400 hover:text-purple-300 text-sm">Case Study →</a>
               </div>
             </div>
           </div>
@@ -173,8 +173,8 @@ export default function Work() {
               <h2 className="glow text-3xl font-bold mb-4">Ready to Create Something Amazing?</h2>
               <p className="text-white/70 mb-6 text-lg">Let&apos;s build your next groundbreaking project together. From concept to launch, we&apos;ll make it extraordinary.</p>
               <div className="flex flex-wrap gap-4 justify-center">
-                <Link href="/#contact" className="rounded-2xl px-8 py-4 bg-gradient-to-r from-purple-600 to-cyan-600 hover:from-purple-500 hover:to-cyan-500 transition font-semibold text-lg">Start Your Project</Link>
-                <Link href="/#services" className="rounded-2xl px-8 py-4 bg-white/10 hover:bg-white/15 transition font-semibold text-lg">View Services</Link>
+                <Link href="/#contact" className="rounded-2xl px-8 py-4 bg-gradient-to-r from-purple-600 to-cyan-600 hover:from-purple-500 hover:to-cyan-500 font-semibold text-lg">Start Your Project</Link>
+                <Link href="/#services" className="rounded-2xl px-8 py-4 bg-white/10 hover:bg-white/15 font-semibold text-lg">View Services</Link>
               </div>
             </div>
           </div>
