@@ -34,19 +34,23 @@ function detectDeviceCapabilities(): DeviceCapabilities {
     const renderer = webglContext.getParameter(webglContext.RENDERER)
     const vendor = webglContext.getParameter(webglContext.VENDOR)
     
-    // Basic GPU detection (this is a simplified check)
-    hasGoodGPU = !(
-      renderer?.includes('Intel') || 
-      renderer?.includes('Software') ||
-      vendor?.includes('Microsoft')
+    // More conservative GPU detection - only allow dedicated GPUs
+    hasGoodGPU = (
+      renderer?.includes('NVIDIA') ||
+      renderer?.includes('AMD') ||
+      renderer?.includes('Radeon') ||
+      (renderer?.includes('Apple') && renderer?.includes('M1')) ||
+      (renderer?.includes('Apple') && renderer?.includes('M2')) ||
+      (renderer?.includes('Apple') && renderer?.includes('M3'))
     )
   }
 
-  // Check device memory and cores
-  const memory = (navigator as Navigator & { deviceMemory?: number }).deviceMemory || 4
+  // Check device memory and cores - be more conservative
+  const memory = (navigator as Navigator & { deviceMemory?: number }).deviceMemory || 2
   const cores = navigator.hardwareConcurrency || 2
   
-  const isHighPerformance = memory >= 4 && cores >= 4 && hasGoodGPU
+  // Require higher specs for animated mode
+  const isHighPerformance = memory >= 8 && cores >= 8 && hasGoodGPU
 
   return { isHighPerformance, supportsWebGL, hasGoodGPU }
 }
@@ -60,8 +64,11 @@ export default function HybridBackground() {
     
     const caps = detectDeviceCapabilities()
     
-    // Decide rendering mode
-    if (!caps.supportsWebGL || !caps.isHighPerformance) {
+    // Check for user preference to force static mode
+    const forceStatic = localStorage.getItem('forceStaticBackground') === 'true'
+    
+    // Be very conservative - default to static unless explicitly high-performance
+    if (forceStatic || !caps.supportsWebGL || !caps.isHighPerformance) {
       setRenderMode('static')
     } else {
       setRenderMode('animated')
@@ -69,7 +76,8 @@ export default function HybridBackground() {
     
     // Log capabilities for debugging
     console.log('Device capabilities:', caps)
-    console.log('Render mode:', caps.isHighPerformance ? 'animated' : 'static')
+    console.log('Force static:', forceStatic)
+    console.log('Render mode:', (forceStatic || !caps.isHighPerformance) ? 'static' : 'animated')
   }, [])
 
   // Show simple gradient during SSR and initial loading
