@@ -56,7 +56,7 @@ body::before {
   overflow: hidden;
 }
 
-/* Animated gradient border */
+/* Static gradient border */
 .neon-border::before {
   content: "";
   position: absolute;
@@ -69,9 +69,7 @@ body::before {
     var(--neon-purple) 50%,
     var(--neon-pink) 75%,
     var(--neon-cyan) 100%);
-  background-size: 400% 400%;
   filter: blur(12px) saturate(180%) brightness(1.2);
-  animation: gradientFlow 8s ease-in-out infinite, pulseGlow 4s ease-in-out infinite;
 }
 
 /* Inner holographic glow */
@@ -88,62 +86,14 @@ body::before {
     linear-gradient(135deg, rgba(255,0,255,0.05), rgba(0,229,255,0.05));
   filter: blur(8px) saturate(150%);
   mix-blend-mode: screen;
-  animation: holographicShift 12s ease-in-out infinite;
 }
 
-/* Floating particle overlay */
+/* Hover effect */
 .neon-border:hover::before {
   filter: blur(8px) saturate(200%) brightness(1.4);
-  animation: gradientFlow 4s ease-in-out infinite, intensePulse 2s ease-in-out infinite;
 }
 
-@keyframes gradientFlow {
-  0%, 100% { 
-    background-position: 0% 50%;
-    transform: scale(1) rotate(0deg);
-  }
-  25% { 
-    background-position: 100% 50%;
-    transform: scale(1.02) rotate(0.5deg);
-  }
-  50% { 
-    background-position: 100% 100%;
-    transform: scale(1) rotate(0deg);
-  }
-  75% { 
-    background-position: 0% 100%;
-    transform: scale(1.01) rotate(-0.5deg);
-  }
-}
-
-@keyframes pulseGlow {
-  0%, 100% { opacity: 0.8; }
-  50% { opacity: 1.2; }
-}
-
-@keyframes intensePulse {
-  0%, 100% { opacity: 0.9; }
-  50% { opacity: 1.4; }
-}
-
-@keyframes holographicShift {
-  0%, 100% { 
-    background-position: 0% 0%, 100% 100%, 50% 50%, 0% 100%;
-    opacity: 0.6;
-  }
-  25% { 
-    background-position: 100% 0%, 0% 100%, 25% 75%, 100% 0%;
-    opacity: 0.8;
-  }
-  50% { 
-    background-position: 100% 100%, 0% 0%, 75% 25%, 100% 100%;
-    opacity: 0.7;
-  }
-  75% { 
-    background-position: 0% 100%, 100% 0%, 50% 50%, 0% 0%;
-    opacity: 0.9;
-  }
-}
+/* Removed keyframe animations for static design */
 
 .card-hover {
   transform-style: preserve-3d;
@@ -282,9 +232,7 @@ button.neon-border:active {
     var(--neon-purple) 50%,
     var(--neon-pink) 75%,
     var(--neon-cyan) 100%);
-  background-size: 400% 400%;
   filter: blur(10px) saturate(180%) brightness(1.2);
-  animation: gradientFlow 8s ease-in-out infinite, pulseGlow 4s ease-in-out infinite;
 }
 
 .logo-animated::after {
@@ -300,7 +248,6 @@ button.neon-border:active {
     linear-gradient(135deg, rgba(255,0,255,0.05), rgba(0,229,255,0.05));
   filter: blur(4px) saturate(150%);
   mix-blend-mode: screen;
-  animation: holographicShift 12s ease-in-out infinite;
 }
 
 .logo-animated > * {
@@ -310,5 +257,4 @@ button.neon-border:active {
 
 .logo-animated:hover::before {
   filter: blur(8px) saturate(200%) brightness(1.4);
-  animation: gradientFlow 4s ease-in-out infinite, intensePulse 2s ease-in-out infinite;
 }
