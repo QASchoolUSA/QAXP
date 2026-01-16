@@ -55,9 +55,9 @@ void main() {
 `;
 
 export default function Iridescence({
-  color = [0.3, 0.05, 0.4],
-  speed = 1.0,
-  amplitude = 0.1,
+  color = [0.1, 0.1, 0.3], // Deep space blue/purple
+  speed = 0.5,
+  amplitude = 0.2, // More liquid movement
   mouseReact = true,
   className = '',
   ...rest

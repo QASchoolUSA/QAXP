@@ -1,13 +1,21 @@
 @import "tailwindcss";
 
 :root {
-  --background: #05050a;
-  --foreground: #e6e6f0;
-  --neon-pink: #ff00ff;
-  --neon-cyan: #00e5ff;
-  --neon-purple: #7a00ff;
-  --grid-color: rgba(0, 229, 255, 0.15);
-  --glow: drop-shadow(0 0 6px var(--neon-cyan)) drop-shadow(0 0 16px var(--neon-pink));
+  --background: #030014;
+  --foreground: #ffffff;
+  
+  /* Futuristic Palette */
+  --electric-violet: #7d5fff;
+  --neon-cyan: #00f3ff;
+  --deep-space: #030014;
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --glass-surface: rgba(255, 255, 255, 0.05);
+  
+  /* Gradients */
+  --gradient-glow: linear-gradient(180deg, rgba(125, 95, 255, 0) 0%, rgba(125, 95, 255, 0.15) 100%);
+  
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
 }
 
 @theme inline {
@@ -17,127 +25,54 @@
   --font-mono: var(--font-geist-mono);
 }
 
-body {
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+html.lenis, html.lenis body {
+  height: auto;
 }
 
-body::before {
-  content: "";
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(180deg, #02030a 0%, #05050a 50%, #02030a 100%);
-  z-index: -10;
-  pointer-events: none;
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
 }
 
-/* Simple button-like styling */
-.neon-border {
-  background: rgba(255, 255, 255, 0.06);
-  border: none;
-  border-radius: 16px;
-  transition: all 0.3s ease;
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
 }
 
-.neon-border:hover {
-  background: rgba(255, 255, 255, 0.1);
-}
-
-
-
-.card-hover {
-  background: rgba(255,255,255,0.06);
-  border: none;
-  border-radius: 16px;
-  transition: all 0.3s ease;
-}
-
-.card-hover:hover {
-  background: rgba(255,255,255,0.1);
-}
-
-/* Removed card hover animations */
-
-/* Removed card hover effects */
-
-/* Removed shimmer animation */
-
-/* Optimized glow text */
-.glow {
-  text-shadow: 0 0 10px rgba(255,0,255,0.4), 0 0 20px rgba(0,229,255,0.3);
-  color: rgba(255,255,255,0.95);
-}
-
-/* Optimized Form Elements */
-input, textarea {
-  background: rgba(255, 255, 255, 0.05);
-  border: none;
-  border-radius: 14px;
-  backdrop-filter: none;
-  box-shadow: none;
-  transition: all 0.3s ease;
-  position: relative;
-}
-
-input:focus, textarea:focus {
-  background: rgba(255, 255, 255, 0.1);
-  outline: none;
-}
-
-input::placeholder, textarea::placeholder {
-  color: rgba(255,255,255,0.4);
-}
-
-input:focus::placeholder, textarea:focus::placeholder {
-  color: rgba(255,255,255,0.6);
-}
-
-/* Simple Button Styling */
-button.neon-border {
-  font-weight: 600;
-  letter-spacing: 0.5px;
-  text-transform: uppercase;
-}
-
-/* Animated Logo with Color Changing Effects */
-.logo-animated {
-  position: relative;
+.lenis.lenis-stopped {
   overflow: hidden;
 }
 
-.logo-animated::before {
-  content: "";
-  position: absolute;
-  inset: -3px;
-  z-index: -1;
-  border-radius: 15px;
-  background: linear-gradient(45deg,
-    var(--neon-pink) 0%,
-    var(--neon-cyan) 25%,
-    var(--neon-purple) 50%,
-    var(--neon-pink) 75%,
-    var(--neon-cyan) 100%);
-  opacity: 0.8;
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
 }
 
-.logo-animated::after {
-  content: "";
-  position: absolute;
-  inset: 0px;
-  border-radius: 12px;
-  z-index: 0;
-  background: linear-gradient(135deg, rgba(255,0,255,0.08), rgba(0,229,255,0.08));
-  opacity: 0.5;
+body {
+  color: var(--foreground);
+  background: var(--deep-space);
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+  selection-background-color: var(--electric-violet);
+  selection-color: #fff;
 }
 
-.logo-animated > * {
-  position: relative;
-  z-index: 1;
+::selection {
+  background: var(--electric-violet);
+  color: #fff;
 }
 
-.logo-animated:hover::before {
-  opacity: 1;
+/* Utilities */
+.glass-panel {
+  background: var(--glass-surface);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
+}
+
+.text-gradient {
+  background: linear-gradient(to right, #fff, #a5a5a5);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.glow-text {
+  text-shadow: 0 0 20px rgba(125, 95, 255, 0.5);
 }
