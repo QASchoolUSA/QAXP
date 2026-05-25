@@ -12,7 +12,7 @@ export default function Contact() {
       <div className="mx-auto max-w-6xl">
         <div className="grid gap-10 lg:grid-cols-[1fr_1.1fr] lg:gap-14">
           <Reveal>
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#2563EB]">
+            <p className="section-label text-xs font-semibold uppercase tracking-[0.2em]">
               Contact
             </p>
             <h2 className="mt-3 font-heading text-3xl font-bold tracking-tight text-zinc-900 md:text-5xl">
@@ -24,19 +24,19 @@ export default function Contact() {
             </p>
             <ul className="mt-8 space-y-4 text-sm text-zinc-600">
               <li className="flex items-center gap-3">
-                <Mail className="h-4 w-4 text-[#2563EB]" aria-hidden />
+                <Mail className="h-4 w-4 text-indigo-600" aria-hidden />
                 hello@qaxp.com
               </li>
               <li className="flex items-center gap-3">
-                <MapPin className="h-4 w-4 text-[#2563EB]" aria-hidden />
+                <MapPin className="h-4 w-4 text-indigo-600" aria-hidden />
                 Florida · Remote worldwide
               </li>
             </ul>
           </Reveal>
 
           <Reveal delay={0.1}>
-            <div className="glass-panel rounded-3xl p-6 md:p-10">
-              <form className="space-y-5" onSubmit={(e) => e.preventDefault()}>
+            <div className="liquid-glass liquid-glass-panel relative rounded-3xl p-6 md:p-10">
+              <form className="relative z-10 space-y-5" onSubmit={(e) => e.preventDefault()}>
                 <div className="grid gap-5 sm:grid-cols-2">
                   <div className="space-y-2">
                     <label htmlFor="name" className="text-sm font-medium text-zinc-700">
@@ -46,7 +46,7 @@ export default function Contact() {
                       id="name"
                       type="text"
                       autoComplete="name"
-                      className="w-full rounded-xl border border-zinc-200 bg-white/80 px-4 py-3 text-zinc-900 outline-none transition-colors duration-200 focus:border-[#2563EB] focus:ring-2 focus:ring-[#2563EB]/20"
+                      className="liquid-input w-full rounded-xl px-4 py-3 text-zinc-900"
                       placeholder="Your name"
                     />
                   </div>
@@ -58,7 +58,7 @@ export default function Contact() {
                       id="email"
                       type="email"
                       autoComplete="email"
-                      className="w-full rounded-xl border border-zinc-200 bg-white/80 px-4 py-3 text-zinc-900 outline-none transition-colors duration-200 focus:border-[#2563EB] focus:ring-2 focus:ring-[#2563EB]/20"
+                      className="liquid-input w-full rounded-xl px-4 py-3 text-zinc-900"
                       placeholder="you@company.com"
                     />
                   </div>
@@ -70,13 +70,13 @@ export default function Contact() {
                   <textarea
                     id="message"
                     rows={4}
-                    className="w-full resize-y rounded-xl border border-zinc-200 bg-white/80 px-4 py-3 text-zinc-900 outline-none transition-colors duration-200 focus:border-[#2563EB] focus:ring-2 focus:ring-[#2563EB]/20"
+                    className="liquid-input w-full resize-y rounded-xl px-4 py-3 text-zinc-900"
                     placeholder="Tell us about your project..."
                   />
                 </div>
                 <button
                   type="submit"
-                  className="group inline-flex w-full items-center justify-center gap-2 rounded-full bg-[#2563EB] px-6 py-3.5 text-sm font-semibold text-white transition-colors duration-200 hover:bg-[#1d4ed8] sm:w-auto cursor-pointer"
+                  className="liquid-cta group inline-flex w-full items-center justify-center gap-2 rounded-full px-6 py-3.5 text-sm font-semibold text-white sm:w-auto cursor-pointer"
                 >
                   Send message
                   <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5" />

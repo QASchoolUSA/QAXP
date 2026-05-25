@@ -22,7 +22,7 @@ export default function Services() {
     >
       <div className="mx-auto max-w-6xl">
         <Reveal className="mb-12 md:mb-16">
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#2563EB]">
+          <p className="section-label text-xs font-semibold uppercase tracking-[0.2em]">
             What we do
           </p>
           <h2 className="mt-3 font-heading text-3xl font-bold tracking-tight text-zinc-900 md:text-5xl">
@@ -33,7 +33,7 @@ export default function Services() {
             and scales with your business.
           </p>
           <motion.div
-            className="mt-6 h-0.5 w-24 origin-left rounded-full bg-[#2563EB]"
+            className="liquid-divider mt-6 w-24 origin-left"
             style={{ scaleX: reduceMotion ? 1 : lineScale }}
           />
         </Reveal>
@@ -42,10 +42,10 @@ export default function Services() {
         <StaggerReveal className="grid gap-4 md:grid-cols-2 lg:hidden">
           {services.map((service) => (
             <StaggerItem key={service.title}>
-              <article className="glass-card group flex h-full flex-col justify-between rounded-2xl p-6 transition-colors duration-200 hover:border-zinc-300 cursor-default">
-                <div>
+              <article className="liquid-glass liquid-glass-card group relative flex h-full flex-col justify-between rounded-2xl p-6 cursor-default">
+                <div className="relative z-10">
                   <service.icon
-                    className="mb-5 h-8 w-8 text-[#2563EB]"
+                    className="mb-5 h-8 w-8 text-indigo-600"
                     strokeWidth={1.5}
                     aria-hidden
                   />
@@ -56,7 +56,7 @@ export default function Services() {
                     {service.desc}
                   </p>
                 </div>
-                <div className="mt-6 h-px w-full bg-zinc-200" />
+                <div className="relative z-10 mt-6 liquid-divider h-px w-full opacity-60" />
               </article>
             </StaggerItem>
           ))}
@@ -113,16 +113,16 @@ function ServiceCard({
 }) {
   return (
     <article
-      className={`glass-card flex flex-col justify-between rounded-2xl p-8 transition-colors duration-200 hover:border-zinc-300 ${
+      className={`liquid-glass liquid-glass-card group relative flex flex-col justify-between rounded-2xl p-8 ${
         tall ? 'min-h-[320px]' : ''
       }`}
     >
-      <div>
-        <service.icon className="mb-5 h-9 w-9 text-[#2563EB]" strokeWidth={1.5} aria-hidden />
+      <div className="relative z-10">
+        <service.icon className="mb-5 h-9 w-9 text-indigo-600" strokeWidth={1.5} aria-hidden />
         <h3 className="font-heading text-2xl font-semibold text-zinc-900">{service.title}</h3>
         <p className="mt-4 text-base leading-relaxed text-zinc-600">{service.desc}</p>
       </div>
-      <div className="mt-8 h-px w-full bg-zinc-200 transition-colors duration-200 group-hover:bg-[#2563EB]/40" />
+      <div className="relative z-10 mt-8 liquid-divider h-px w-full opacity-50" />
     </article>
   );
 }

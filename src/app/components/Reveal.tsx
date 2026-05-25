@@ -35,7 +35,7 @@ export default function Reveal({
       x: 0,
       y: 0,
       transition: {
-        duration: reduceMotion ? 0 : 0.55,
+        duration: reduceMotion ? 0 : 0.5,
         delay,
         ease: [0.22, 1, 0.36, 1],
       },

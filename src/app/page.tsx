@@ -19,7 +19,7 @@ export default function Home() {
         <Contact />
       </main>
 
-      <footer className="relative z-10 border-t border-zinc-200/80 py-10 text-center text-sm text-zinc-500">
+      <footer className="relative z-10 border-t border-white/60 py-10 text-center text-sm text-zinc-500 backdrop-blur-sm">
         © {new Date().getFullYear()} QAXP Studio. All rights reserved.
       </footer>
     </SmoothScroll>

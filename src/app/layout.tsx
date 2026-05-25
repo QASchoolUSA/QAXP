@@ -28,7 +28,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="h-full scroll-smooth">
       <body
-        className={`${archivo.variable} ${spaceGrotesk.variable} antialiased h-full bg-[#FAFAFA] text-[#09090B]`}
+        className={`${archivo.variable} ${spaceGrotesk.variable} antialiased h-full bg-[#f4f2ff] text-[#09090B]`}
       >
         {children}
       </body>
