@@ -1,26 +1,23 @@
-import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
+import type { Metadata } from 'next';
+import { Archivo, Space_Grotesk } from 'next/font/google';
+import './globals.css';
 
-// Add Impact font
-const impact = {
-  fontFamily: 'Impact, "Arial Black", sans-serif',
-  variable: '--font-impact'
-};
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
+const archivo = Archivo({
+  subsets: ['latin'],
+  variable: '--font-heading',
+  display: 'swap',
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+const spaceGrotesk = Space_Grotesk({
+  subsets: ['latin'],
+  variable: '--font-body',
+  display: 'swap',
 });
 
 export const metadata: Metadata = {
-  title: "QAXP - Web Design, Marketing & SEO",
-  description: "Futuristic Web Design, Marketing and SEO Studio - Where Digital Dreams Meet Reality",
+  title: 'QAXP - Web Design, Marketing & SEO',
+  description:
+    'Futuristic Web Design, Marketing and SEO Studio - Where Digital Dreams Meet Reality',
 };
 
 export default function RootLayout({
@@ -29,10 +26,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="h-full">
+    <html lang="en" className="h-full scroll-smooth">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased h-full bg-black text-white`}
-        style={{ '--font-impact': impact.fontFamily } as React.CSSProperties}
+        className={`${archivo.variable} ${spaceGrotesk.variable} antialiased h-full bg-[#FAFAFA] text-[#09090B]`}
       >
         {children}
       </body>

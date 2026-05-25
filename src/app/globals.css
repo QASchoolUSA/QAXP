@@ -1,31 +1,29 @@
 @import "tailwindcss";
 
 :root {
-  --background: #030014;
-  --foreground: #ffffff;
-  
-  /* Futuristic Palette */
-  --electric-violet: #7d5fff;
-  --neon-cyan: #00f3ff;
-  --deep-space: #030014;
-  --glass-border: rgba(255, 255, 255, 0.1);
-  --glass-surface: rgba(255, 255, 255, 0.05);
-  
-  /* Gradients */
-  --gradient-glow: linear-gradient(180deg, rgba(125, 95, 255, 0) 0%, rgba(125, 95, 255, 0.15) 100%);
-  
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --background: #fafafa;
+  --foreground: #09090b;
+  --primary: #18181b;
+  --secondary: #3f3f46;
+  --cta: #2563eb;
+  --muted: #475569;
+  --glass-border: rgba(255, 255, 255, 0.65);
+  --glass-surface: rgba(255, 255, 255, 0.78);
+  --font-heading-fallback: system-ui, sans-serif;
+  --font-body-fallback: system-ui, sans-serif;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-primary: var(--primary);
+  --color-secondary: var(--secondary);
+  --color-cta: var(--cta);
+  --font-sans: var(--font-body), var(--font-body-fallback);
 }
 
-html.lenis, html.lenis body {
+html.lenis,
+html.lenis body {
   height: auto;
 }
 
@@ -47,32 +45,44 @@ html.lenis, html.lenis body {
 
 body {
   color: var(--foreground);
-  background: var(--deep-space);
-  font-family: var(--font-sans);
+  background: var(--background);
+  font-family: var(--font-body), var(--font-body-fallback);
   overflow-x: hidden;
-  selection-background-color: var(--electric-violet);
-  selection-color: #fff;
 }
 
 ::selection {
-  background: var(--electric-violet);
+  background: #2563eb;
   color: #fff;
 }
 
-/* Utilities */
+.font-heading {
+  font-family: var(--font-heading), var(--font-heading-fallback);
+}
+
 .glass-panel {
   background: var(--glass-surface);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(24, 24, 27, 0.08);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.8) inset,
+    0 20px 50px -24px rgba(24, 24, 27, 0.12);
 }
 
-.text-gradient {
-  background: linear-gradient(to right, #fff, #a5a5a5);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+.glass-card {
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(24, 24, 27, 0.08);
 }
 
-.glow-text {
-  text-shadow: 0 0 20px rgba(125, 95, 255, 0.5);
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

@@ -1,138 +1,95 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
 import { ArrowUpRight } from 'lucide-react';
-import Magnetic from './Magnetic';
-
-const projects = [
-    {
-        title: "Palace Pizza Bartow",
-        category: "Food & Beverage",
-        year: "2024",
-        url: "https://palacepizzabartow.com"
-    },
-    {
-        title: "Sanford Cleaning",
-        category: "Service",
-        year: "2024",
-        url: "https://sanfordcleaning.com"
-    },
-    {
-        title: "Haines City Cleaning",
-        category: "Service",
-        year: "2024",
-        url: "https://hainescitycleaning.com"
-    },
-    {
-        title: "Path To Soul",
-        category: "Wellness",
-        year: "2024",
-        url: "https://pathtosoul.com"
-    },
-    {
-        title: "Sumer Plus",
-        category: "E-Commerce",
-        year: "2025",
-        url: "https://sumerplus.com"
-    },
-    {
-        title: "Precise Accounting",
-        category: "Finance",
-        year: "2024",
-        url: "https://proaccountingusa.com"
-    },
-    {
-        title: "DOT Semi",
-        category: "Logistics",
-        year: "2024",
-        url: "https://dotsemi.com"
-    },
-    {
-        title: "Locksmith Davenport",
-        category: "Service",
-        year: "2024",
-        url: "https://locksmithdavenport.com"
-    },
-    {
-        title: "PTI Plus",
-        category: "Logistics",
-        year: "2025",
-        url: "https://ptiplus.com"
-    },
-    {
-        title: "Trucking Jobs",
-        category: "Recruitment",
-        year: "2024",
-        url: "https://trucking-jobs.com"
-    },
-    {
-        title: "My Own Booking",
-        category: "SaaS",
-        year: "2025",
-        url: "https://book.qaxp.com"
-    },
-    {
-        title: "Free Malyarevsky",
-        category: "Non-Profit",
-        year: "2024",
-        url: "https://freemalyarevsky.com/en"
-    }
-];
+import Link from 'next/link';
+import { projects } from '@/lib/data';
+import Reveal, { StaggerItem, StaggerReveal } from './Reveal';
 
 export default function Work() {
-    return (
-        <section className="py-32 px-6 md:px-12 max-w-8xl mx-auto">
-            <div className="flex flex-col md:flex-row justify-between items-end mb-24">
-                <h2 className="text-[12vw] md:text-[6vw] font-black leading-[0.85] tracking-tighter">
-                    SELECTED<br />WORK
-                </h2>
-                <div className="mb-4 text-right">
-                    <p className="text-white/60 mb-2">Defining the visual language of tomorrow.</p>
-                    <span className="text-[#00f3ff] text-sm font-mono">[ 04 - 12 ]</span>
-                </div>
-            </div>
+  const reduceMotion = useReducedMotion();
+  const featured = projects.slice(0, 6);
 
-            <div className="flex flex-col">
-                {projects.map((project, index) => (
-                    <a
-                        key={index}
-                        href={project.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="group relative block border-t border-white/10 py-16 transition-colors hover:bg-white/5"
-                    >
-                        <div className="flex flex-col md:flex-row justify-between items-start md:items-center relative z-10 px-4">
-                            <h3 className="text-4xl md:text-6xl font-bold uppercase tracking-tight group-hover:translate-x-4 transition-transform duration-500">
-                                {project.title}
-                            </h3>
+  return (
+    <section id="work" className="scroll-mt-28 px-5 py-24 md:px-10 lg:px-12">
+      <div className="mx-auto max-w-6xl">
+        <Reveal className="mb-12 flex flex-col gap-6 md:mb-16 md:flex-row md:items-end md:justify-between">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#2563EB]">
+              Portfolio
+            </p>
+            <h2 className="mt-3 font-heading text-3xl font-bold tracking-tight text-zinc-900 md:text-5xl">
+              Selected work
+            </h2>
+          </div>
+          <p className="max-w-sm text-sm text-zinc-600 md:text-base">
+            Defining the visual language of brands across food, logistics, wellness, and SaaS.
+          </p>
+        </Reveal>
 
-                            <div className="flex items-center gap-12 mt-4 md:mt-0 opacity-50 group-hover:opacity-100 transition-opacity">
-                                <span className="text-lg">{project.category}</span>
-                                <span className="text-lg font-mono">{project.year}</span>
-                            </div>
-                        </div>
+        <StaggerReveal className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {featured.map((project) => (
+            <StaggerItem key={project.url}>
+              <ProjectCard project={project} reduceMotion={!!reduceMotion} />
+            </StaggerItem>
+          ))}
+        </StaggerReveal>
 
-                        <div className="absolute top-1/2 right-12 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-all duration-300 scale-0 group-hover:scale-100">
-                            <Magnetic>
-                                <div className="w-24 h-24 rounded-full bg-[#7d5fff] flex items-center justify-center">
-                                    <ArrowUpRight className="w-10 h-10 text-black" />
-                                </div>
-                            </Magnetic>
-                        </div>
+        <Reveal className="mt-12 flex justify-center">
+          <Link
+            href="/work"
+            className="inline-flex items-center gap-2 rounded-full border border-zinc-300 bg-white/80 px-8 py-3.5 text-sm font-semibold text-zinc-900 backdrop-blur-md transition-colors duration-200 hover:border-zinc-400 hover:bg-white cursor-pointer"
+          >
+            View all {projects.length} projects
+            <ArrowUpRight className="h-4 w-4" />
+          </Link>
+        </Reveal>
+      </div>
+    </section>
+  );
+}
 
-                        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000 ease-in-out pointer-events-none" />
-                    </a>
-                ))}
-                <div className="border-t border-white/10" />
-            </div>
-
-            <div className="mt-24 flex justify-center">
-                <Magnetic>
-                    <button className="px-10 py-5 rounded-full border border-white/20 text-lg hover:bg-white text-white hover:text-black transition-all">
-                        View All Projects
-                    </button>
-                </Magnetic>
-            </div>
-        </section>
-    );
+function ProjectCard({
+  project,
+  reduceMotion,
+}: {
+  project: (typeof projects)[number];
+  reduceMotion: boolean;
+}) {
+  return (
+    <motion.a
+      href={project.url}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="group glass-card relative flex min-h-[220px] flex-col justify-between overflow-hidden rounded-2xl p-5 cursor-pointer"
+      whileHover={reduceMotion ? undefined : { y: -4 }}
+      transition={{ type: 'spring', stiffness: 400, damping: 28 }}
+    >
+      <div
+        className="pointer-events-none absolute -right-8 -top-8 h-32 w-32 rounded-full opacity-20 blur-2xl transition-opacity duration-300 group-hover:opacity-35"
+        style={{ backgroundColor: project.accent }}
+      />
+      <div>
+        <span className="text-xs font-medium uppercase tracking-wider text-zinc-500">
+          {project.category} · {project.year}
+        </span>
+        <h3 className="mt-3 font-heading text-xl font-semibold leading-snug text-zinc-900 transition-colors duration-200 group-hover:text-[#2563EB] md:text-2xl">
+          {project.title}
+        </h3>
+        {project.description && (
+          <p className="mt-3 line-clamp-2 text-sm leading-relaxed text-zinc-600">
+            {project.description}
+          </p>
+        )}
+      </div>
+      <div className="mt-6 flex items-center justify-between">
+        <span className="text-sm font-medium text-zinc-500 transition-colors duration-200 group-hover:text-zinc-900">
+          Visit site
+        </span>
+        <span className="flex h-10 w-10 items-center justify-center rounded-full bg-zinc-900 text-white transition-colors duration-200 group-hover:bg-[#2563EB]">
+          <ArrowUpRight className="h-4 w-4" />
+        </span>
+      </div>
+    </motion.a>
+  );
 }
